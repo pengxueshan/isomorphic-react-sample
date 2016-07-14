@@ -1,0 +1,39 @@
+{
+  "name": "isomorphic-react-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/8itcoin/isomorphic-react-sample.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/8itcoin/isomorphic-react-sample/issues"
+  },
+  "homepage": "https://github.com/8itcoin/isomorphic-react-sample#readme",
+  "dependencies": {
+    "axios": "^0.13.0",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.5.2",
+    "react-router-redux": "^4.0.5",
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "nodemon": "^1.9.2",
+    "sass-loader": "^4.0.0",
+    "webpack": "^1.13.1"
+  }
+}
