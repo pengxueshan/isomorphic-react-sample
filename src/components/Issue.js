@@ -5,7 +5,7 @@ export default connect(
     (state) => ({
         issue: state.issue.issue
     })
-)(class Bar extends Component {
+)(class Issue extends Component {
     static fetchData() {
         console.log(this)
     }
