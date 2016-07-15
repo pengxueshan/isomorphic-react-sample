@@ -23,7 +23,7 @@ function renderFullPage(markup, initialState = {}) {
             <title>isomorphic react sample</title>
         </head>
         <body>
-            <div id="root"></div>
+            <div id="root">${markup}</div>
             <script src="/bundle.js"></script>
             <script>window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}</script>
         </body>
