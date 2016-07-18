@@ -26,13 +26,12 @@ import axios from "axios"
 const BASE_URL = "https://api.github.com"
 
 export function queryIssues() {
-    return dispatch => {
-        return axios.get(`${BASE_URL}/repos/vmg/redcarpet/issues?state=closed`)
+    return dispatch =>
+        axios.get(`${BASE_URL}/repos/vmg/redcarpet/issues?state=closed`)
         .then(res => dispatch({
             type: "QUERY_ISSUES_SUCCESS",
             payload: { issues: res.data }
         }))
-    }
 }
 
 export function getIssue(number) {
