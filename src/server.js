@@ -19,7 +19,7 @@ function renderFullPage(markup, initialState = {}) {
             <title>isomorphic react sample</title>
         </head>
         <body>
-            <div id="root">${markup}</div>
+            <div id="root"></div>
             <script src="/bundle.js"></script>
             <script>window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}</script>
         </body>
@@ -34,19 +34,24 @@ const app = express()
 app.use(express.static(`${__dirname}/../build`))
 app.use((req, res) => {
     match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
+        const { params, location } = renderProps
 
         // TODO:
         if (renderProps) {
-            renderProps.components.filter(c => c.fetchData)
-            .forEach(c => console.log(c.WrappedComponent))
-
-            const markup = renderToString(
-                <Provider store={store}>
-                    <RouterContext {...renderProps} />
-                </Provider>
+            Promise.all(
+                renderProps.components
+                .filter(c => c && c.fetchData)
+                .map(c => c.fetchData({ store, location, params }))
             )
-            const initialState = store.getState()
-            res.status(200).send(renderFullPage(markup, initialState))
+            .then((/* res */) => {
+                const markup = renderToString(
+                    <Provider store={store}>
+                        <RouterContext {...renderProps} />
+                    </Provider>
+                )
+                const initialState = store.getState()
+                res.status(200).send(renderFullPage(markup, initialState))
+            })
         }
     })
 })

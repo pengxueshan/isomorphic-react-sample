@@ -23,18 +23,21 @@ export const routes = (
  */
 import axios from "axios"
 
-const BASE_URL = "https://api.github.com/"
+const BASE_URL = "https://api.github.com"
 
 export function queryIssues() {
-    return dispatch => axios.get(`${BASE_URL}/repos/vmg/redcarpet/issues?state=closed`)
+    return dispatch => {
+        return axios.get(`${BASE_URL}/repos/vmg/redcarpet/issues?state=closed`)
         .then(res => dispatch({
             type: "QUERY_ISSUES_SUCCESS",
-            payload: { issues: res.data.data }
+            payload: { issues: res.data }
         }))
+    }
 }
 
 export function getIssue(number) {
-    return dispatch => axios.get(`${BASE_URL}/repos/vmg/redcarpet/issues/${number}`)
+    return dispatch =>
+        axios.get(`${BASE_URL}/repos/vmg/redcarpet/issues/${number}`)
         .then(res => dispatch({
             type: "GET_ISSUE_SUCCESS",
             payload: { ISSUE: res.data.data }
