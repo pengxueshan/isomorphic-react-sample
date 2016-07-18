@@ -1,13 +1,15 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 
+import { queryIssues } from "../app"
+
 export default connect(
     (state) => ({
         issues: state.issues.issues
     })
 )(class Issues extends Component {
-    static fetchData() {
-        console.log(this)
+    static fetchData(props) {
+        console.log(":::", this, props)
     }
 
     render() {

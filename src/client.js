@@ -1,8 +1,8 @@
 import React from "react"
 import { render } from "react-dom"
 import { Provider } from "react-redux"
-import { match, Router } from "react-router"
-import createBrowserHistory from "history/lib/createBrowserHistory"
+import { Router, browserHistory } from "react-router"
+import { syncHistoryWithStore } from "react-router-redux"
 
 import {
     configureStore,
@@ -10,13 +10,11 @@ import {
 } from "./app"
 
 const store = configureStore(window.__INITIAL_STATE__)
-const history = createBrowserHistory()
+const history = syncHistoryWithStore(browserHistory, store)
 
-match({ history, routes }, (err, redirectLocation, renderProps) => {
-    render(
-        <Provider store={store}>
-            <Router {...renderProps} />
-        </Provider>,
-        document.getElementById("root")
-    )
-})
+render(
+    <Provider store={store}>
+        <Router history={history} routes={routes} />
+    </Provider>,
+    document.getElementById("root")
+)

@@ -37,12 +37,15 @@ app.use((req, res) => {
 
         // TODO:
         if (renderProps) {
-            const initialState = store.getState()
+            renderProps.components.filter(c => c.fetchData)
+            .forEach(c => console.log(c.WrappedComponent))
+
             const markup = renderToString(
                 <Provider store={store}>
                     <RouterContext {...renderProps} />
                 </Provider>
             )
+            const initialState = store.getState()
             res.status(200).send(renderFullPage(markup, initialState))
         }
     })

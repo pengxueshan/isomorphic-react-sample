@@ -47,6 +47,7 @@ export function getIssue(number) {
  * reducers
  */
 import { combineReducers } from "redux"
+import { routerReducer as routing } from "react-router-redux"
 
 function issues(state = { issues: [] }, { type, payload }) {
     return type === "QUERY_ISSUES_SUCCESS" ? { issues: [...payload.issues] } : state
@@ -57,6 +58,7 @@ function issue(state = { issue: {} }, { type, payload }) {
 }
 
 const rootReducer = combineReducers({
+    routing,
     issues,
     issue
 })
