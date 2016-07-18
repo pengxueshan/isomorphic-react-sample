@@ -1,7 +1,3 @@
-import express from "express"
-
-const app = express()
-
 import React from "react"
 import { renderToString } from "react-dom/server"
 import { Provider } from "react-redux"
@@ -30,6 +26,10 @@ function renderFullPage(markup, initialState = {}) {
     </html>
     `
 }
+
+import express from "express"
+
+const app = express()
 
 app.use(express.static(`${__dirname}/../build`))
 app.use((req, res) => {
