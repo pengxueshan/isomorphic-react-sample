@@ -13,6 +13,12 @@ export default connect(
         return store.dispatch(queryIssues())
     }
 
+    componentDidMount() {
+        if (!this.props.issues) {
+            this.props.dispatch(queryIssues())
+        }
+    }
+
     render() {
         const { issues } = this.props
 
@@ -20,13 +26,13 @@ export default connect(
             <div>
                 <h2>Issues:</h2>
                 <ul>
-                    {issues.map((issue, index) => (
+                    {issues && issues.map((issue, index) => (
                         <li key={index}>
                             <dl>
                                 <dt>id:</dt>
                                 <dd>{issue.id}</dd>
                                 <dt>title:</dt>
-                                <dd><Link to={"/issues/" + issues.id}>{issue.title}</Link></dd>
+                                <dd><Link to={"/issues/" + issue.number}>{issue.title}</Link></dd>
                                 <dt>url:</dt>
                                 <dd>{issue.url}</dd>
                                 <dt>number:</dt>

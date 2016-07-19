@@ -37,6 +37,10 @@ app.use((req, res) => {
     match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
         const { params, location } = renderProps
 
+        if (redirectLocation) {
+            res.redirect(302, redirectLocation.pathname + redirectLocation.search)
+        }
+
         if (renderProps) {
             Promise.all(
                 renderProps.components

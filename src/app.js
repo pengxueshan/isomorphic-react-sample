@@ -12,7 +12,7 @@ export const routes = (
     <Route component={App}>
         <Route path="/" component={Root} />
         <Route path="/issues" component={Issues} />
-        <Route path="/issues/:id" component={Issue} />
+        <Route path="/issues/:number" component={Issue} />
     </Route>
 )
 
@@ -39,7 +39,7 @@ export function getIssue(number) {
         axios.get(`${BASE_URL}/repos/vmg/redcarpet/issues/${number}`)
         .then(res => dispatch({
             type: "GET_ISSUE_SUCCESS",
-            payload: { ISSUE: res.data.data }
+            payload: { issue: res.data }
         }))
 }
 
@@ -51,11 +51,11 @@ export function getIssue(number) {
 import { combineReducers } from "redux"
 import { routerReducer as routing } from "react-router-redux"
 
-function issues(state = { issues: [] }, { type, payload }) {
+function issues(state = {}, { type, payload }) {
     return type === "QUERY_ISSUES_SUCCESS" ? { issues: [...payload.issues] } : state
 }
 
-function issue(state = { issue: {} }, { type, payload }) {
+function issue(state = {}, { type, payload }) {
     return type === "GET_ISSUE_SUCCESS" ? { issue: {...payload.issue} } : state
 }
 
