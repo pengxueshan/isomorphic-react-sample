@@ -12,9 +12,7 @@ export default connect(
     }
 
     componentDidMount() {
-        if (!this.props.issue) {
-            this.props.dispatch(getIssue(this.props.params.number))
-        }
+        this.props.dispatch(getIssue(this.props.params.number))
     }
 
     render() {
