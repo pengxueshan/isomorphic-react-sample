@@ -12,12 +12,19 @@ export default connect(
         return store.dispatch(queryIssues())
     }
 
+    componentWillMount() {
+        if (!this.props.issues.length) {
+            this.props.dispatch(queryIssues())
+        }
+    }
+
     render() {
         const { issues } = this.props
 
+        console.log(issues)
+
         return (
             <div>
-                {/* TODO */}
                 <h2>Issues:</h2>
                 <ul>
                     {issues.map((issue, index) => (

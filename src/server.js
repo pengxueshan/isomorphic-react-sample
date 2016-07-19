@@ -44,12 +44,12 @@ app.use((req, res) => {
                 .map(c => c.fetchData({ store, location, params }))
             )
             .then((/* res */) => {
+                const initialState = store.getState()
                 const markup = renderToString(
                     <Provider store={store}>
                         <RouterContext {...renderProps} />
                     </Provider>
                 )
-                const initialState = store.getState()
                 res.status(200).send(renderFullPage(markup, initialState))
             })
         }
