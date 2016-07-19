@@ -11,6 +11,7 @@ import {
 const store = configureStore()
 
 function renderFullPage(markup, initialState = {}) {
+    console.log("WHAT HERE:", initialState)
     return `
     <!doctype html>
     <html>
@@ -18,11 +19,11 @@ function renderFullPage(markup, initialState = {}) {
             <meta charset="utf-8" />
             <title>isomorphic react sample</title>
             <style>body{font:sans-serif}a{color:blue}</style>
+            <script type="text/javascript">window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}</script>
         </head>
         <body>
             <div id="root">${markup}</div>
             <script src="/bundle.js"></script>
-            <script>window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}</script>
         </body>
     </html>
     `
@@ -37,7 +38,9 @@ app.use((req, res) => {
     match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
         const { params, location } = renderProps
 
-        // TODO:
+        if (redirectLocation) {
+        }
+
         if (renderProps) {
             Promise.all(
                 renderProps.components
@@ -51,6 +54,7 @@ app.use((req, res) => {
                         <RouterContext {...renderProps} />
                     </Provider>
                 )
+                console.log("FUCK SERVER: __INITIAL_STATE__:", initialState)
                 res.status(200).send(renderFullPage(markup, initialState))
             })
         }

@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import { Link } from "react-router"
 
 import { queryIssues } from "../app"
 
@@ -14,14 +15,12 @@ export default connect(
 
     componentWillMount() {
         if (!this.props.issues.length) {
-            this.props.dispatch(queryIssues())
+            // this.props.dispatch(queryIssues())
         }
     }
 
     render() {
         const { issues } = this.props
-
-        console.log(issues)
 
         return (
             <div>
@@ -33,7 +32,7 @@ export default connect(
                                 <dt>id:</dt>
                                 <dd>{issue.id}</dd>
                                 <dt>title:</dt>
-                                <dd>{issue.title}</dd>
+                                <dd><Link to={"/issues/" + issues.id}>{issue.title}</Link></dd>
                                 <dt>url:</dt>
                                 <dd>{issue.url}</dd>
                                 <dt>number:</dt>

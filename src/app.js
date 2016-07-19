@@ -30,7 +30,7 @@ export function queryIssues() {
         axios.get(`${BASE_URL}/repos/vmg/redcarpet/issues?state=closed`)
         .then(res => dispatch({
             type: "QUERY_ISSUES_SUCCESS",
-            payload: { issues: res.data.slice(0, 10) }
+            payload: { issues: res.data.slice(0, 2) }
         }))
 }
 
