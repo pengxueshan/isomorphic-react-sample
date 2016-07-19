@@ -17,7 +17,7 @@ function renderFullPage(markup, initialState = {}) {
         <head>
             <meta charset="utf-8" />
             <title>isomorphic react sample</title>
-            <style>body{font:sans-serif}a{color:blue}</style>
+            <style>body{font-family:sans-serif;}a{color:blue;}</style>
             <script type="text/javascript">window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}</script>
         </head>
         <body>

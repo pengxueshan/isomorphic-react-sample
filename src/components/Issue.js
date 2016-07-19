@@ -18,20 +18,29 @@ export default connect(
     render() {
         const { issue } = this.props
 
-        return issue ? (
+        return (
             <div>
                 <h1>{issue.title}</h1>
                 <dl>
                     <dt>id:</dt>
                     <dd>{issue.id}</dd>
-                    <dt>number:</dt>
-                    <dd>{issue.number}</dd>
                     <dt>url:</dt>
                     <dd>{issue.url}</dd>
-                    <dt>repository url:</dt>
-                    <dd>{issue.repository_url}</dd>
+                    <dt>number:</dt>
+                    <dd>{issue.number}</dd>
+                    <dt>user:</dt>
+                    <dd>
+                        <dl>
+                            <dt>login:</dt>
+                            <dd>{issue.user.login}</dd>
+                            <dt>id:</dt>
+                            <dd>{issue.user.id}</dd>
+                            <dt>avatar:</dt>
+                            <dd><img src={issue.user.avatar_url} alt="" style={{ width: 80, height: 80, borderRadius: "100%" }} /></dd>
+                        </dl>
+                    </dd>
                 </dl>
             </div>
-        ) : null
+        )
     }
 })

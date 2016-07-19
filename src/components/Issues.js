@@ -14,9 +14,7 @@ export default connect(
     }
 
     componentDidMount() {
-        if (!this.props.issues) {
-            this.props.dispatch(queryIssues())
-        }
+        this.props.dispatch(queryIssues())
     }
 
     render() {
@@ -26,29 +24,9 @@ export default connect(
             <div>
                 <h2>Issues:</h2>
                 <ul>
-                    {issues && issues.map((issue, index) => (
+                    {issues.map((issue, index) => (
                         <li key={index}>
-                            <dl>
-                                <dt>id:</dt>
-                                <dd>{issue.id}</dd>
-                                <dt>title:</dt>
-                                <dd><Link to={"/issues/" + issue.number}>{issue.title}</Link></dd>
-                                <dt>url:</dt>
-                                <dd>{issue.url}</dd>
-                                <dt>number:</dt>
-                                <dd>{issue.number}</dd>
-                                <dt>user:</dt>
-                                <dd>
-                                    <dl>
-                                        <dt>login:</dt>
-                                        <dd>{issue.user.login}</dd>
-                                        <dt>id:</dt>
-                                        <dd>{issue.user.id}</dd>
-                                        <dt>avatar:</dt>
-                                        <dd><img src={issue.user.avatar_url} alt="" /></dd>
-                                    </dl>
-                                </dd>
-                            </dl>
+                            <Link to={"/issues/" + issue.number}>{issue.title}</Link>
                         </li>
                     ))}
                 </ul>
