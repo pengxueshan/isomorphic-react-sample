@@ -11,7 +11,6 @@ import {
 const store = configureStore()
 
 function renderFullPage(markup, initialState = {}) {
-    console.log("WHAT HERE:", initialState)
     return `
     <!doctype html>
     <html>
@@ -38,9 +37,6 @@ app.use((req, res) => {
     match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
         const { params, location } = renderProps
 
-        if (redirectLocation) {
-        }
-
         if (renderProps) {
             Promise.all(
                 renderProps.components
@@ -54,7 +50,6 @@ app.use((req, res) => {
                         <RouterContext {...renderProps} />
                     </Provider>
                 )
-                console.log("FUCK SERVER: __INITIAL_STATE__:", initialState)
                 res.status(200).send(renderFullPage(markup, initialState))
             })
         }

@@ -9,19 +9,14 @@ import {
     routes
 } from "./app"
 
-console.log("window.__INITIAL_STATE__:", window.__INITIAL_STATE__)
-
 const store = configureStore(window.__INITIAL_STATE__)
 const history = syncHistoryWithStore(browserHistory, store)
 
-console.log("CLIENT store:", store.getState())
-
-// match({ history, routes }, (err, redirectLocation, renderProps) => {
+match({ history, routes }, (err, redirectLocation, renderProps) => {
     render(
         <Provider store={store}>
-            {/*<Router {...renderProps} />*/}
-            <Router history={history} routes={routes} />
+            <Router {...renderProps} />
         </Provider>,
         document.getElementById("root")
     )
-// })
+})
