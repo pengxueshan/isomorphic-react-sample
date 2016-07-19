@@ -27,7 +27,7 @@ const BASE_URL = "https://api.github.com"
 
 export function queryIssues() {
     return dispatch =>
-        axios.get(`${BASE_URL}/repos/vmg/redcarpet/issues?state=closed`)
+        axios.get(`${BASE_URL}/repos/facebook/react/issues`)
         .then(res => dispatch({
             type: "QUERY_ISSUES_SUCCESS",
             payload: { issues: res.data }
@@ -36,7 +36,7 @@ export function queryIssues() {
 
 export function getIssue(number) {
     return dispatch =>
-        axios.get(`${BASE_URL}/repos/vmg/redcarpet/issues/${number}`)
+        axios.get(`${BASE_URL}/repos/facebook/react/issues/${number}`)
         .then(res => dispatch({
             type: "GET_ISSUE_SUCCESS",
             payload: { issue: res.data }
