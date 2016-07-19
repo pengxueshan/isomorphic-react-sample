@@ -17,6 +17,7 @@ function renderFullPage(markup, initialState = {}) {
         <head>
             <meta charset="utf-8" />
             <title>isomorphic react sample</title>
+            <style>body{font:sans-serif}a{color:blue}</style>
         </head>
         <body>
             <div id="root">${markup}</div>
